@@ -6,45 +6,56 @@ calculator program yourself in this file.
 
 from arithmetic import *
 
-def calculator():
+#def calculator():
 
-    while True:
-        user_input = raw_input("> ")
-        tokens = user_input.split(" ")
+while True:
+    user_input = raw_input("> ")
+    tokens = user_input.split(" ")
 
-        operator = tokens[0]
-        num1 = tokens[1]
-        num2 = tokens[2]
+    if len(tokens) > 3:
+        print "Please enter one operator followed by two numbers."
+        continue
 
-        if operator == "+":
-            result = add(float(num1), float(num2))
+    elif len(tokens) < 3:
+        print """Please enter an operator followd by two numbers.
+Format example:  + 10 5 ."""
+        continue
+    
+    operator = tokens[0]
+    num1 = tokens[1]
+    num2 = tokens[2]
 
-        elif operator == "-":
-            result = subtract(float(num1), float(num2))
 
-        elif operator == "*":
-            result = multiply(float(num1), float(num2))
+    if not num1.isdigit() or not num2.isdigit():
+        print """Those aren't numbers! You broke me. 
+Start over and enter an operator followed by two numbers."""
+        continue
 
-        elif operator == "/":
-            result = divide(float(num1), float(num2))
 
-        elif operator == "square":
-            result = square(float(num1))
+    elif operator == "+":
+        result = add(int(num1), int(num2))
 
-        elif operator == "cube":
-            result = cube(float(num1))
+    elif operator == "-":
+        result = subtract(int(num1), int(num2))
 
-        elif operator == "pow":
-            result = power(float(num1), float(num2))
+    elif operator == "*":
+        result = multiply(int(num1), int(num2))
 
-        elif operator == "mod":
-            result = mod(float(num1), float(num2))
+    elif operator == "/":
+        result = float(divide(int(num1), int(num2)))
 
-        elif not num1.isdigit() or not num2.isdigit():
-            print """Those aren't numbers! You broke me. 
-Start over and enter an integer followed by two numbers."""
-            break
+    elif operator == "square":
+        result = square(int(num1))
 
-        print result
-    return result
-calculator()
+    elif operator == "cube":
+        result = cube(int(num1))
+
+    elif operator == "pow":
+        result = power(int(num1), int(num2))
+
+    elif operator == "mod":
+        result = mod(int(num1), int(num2))
+
+    print result
+ #   return result
+#calculator()
